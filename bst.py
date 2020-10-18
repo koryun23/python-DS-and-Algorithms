@@ -91,12 +91,7 @@ class BinarySearchTree:
                             parent['left'] = leftmost
                         elif current['value'] > parent['value']:
                             parent['right'] = leftmost
-                return True
-
-        
- 
-
-        
+                return True      
                 
     def get(self):
         my_bst = {
