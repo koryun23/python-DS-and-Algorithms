@@ -1,26 +1,28 @@
 class BinarySearchTree:
     def __init__(self):
         self.root = None
-    def insert(self,value):
-        node = {'value':value,'left':None,'right':None}
-        if self.root == None:
-            self.root = node 
-        else:
+    def insert(self, root, value):
+        
+    # def insert(self,value):
+    #     node = {'value':value,'left':None,'right':None}
+    #     if self.root == None:
+    #         self.root = node 
+    #     else:
             
-            current = self.root
-            while True:
-                if value > current['value']:
-                    if current['right'] == None:
-                        current['right'] = node
-                        break
-                    else:
-                        current = current['right']
-                else:
-                    if current['left'] == None:
-                        current['left'] = node
-                        break
-                    else:
-                        current = current['left']
+    #         current = self.root
+    #         while True:
+    #             if value > current['value']:
+    #                 if current['right'] == None:
+    #                     current['right'] = node
+    #                     break
+    #                 else:
+    #                     current = current['right']
+    #             else:
+    #                 if current['left'] == None:
+    #                     current['left'] = node
+    #                     break
+    #                 else:
+    #                     current = current['left']
     def lookup(self,value):
         if self.root == None:
             return
@@ -92,8 +94,7 @@ class BinarySearchTree:
                         elif current['value'] > parent['value']:
                             parent['right'] = leftmost
                 return True  
-#these are the new changes    
-                
+
     def get(self):
         my_bst = {
             'root':self.root,
@@ -103,14 +104,14 @@ class BinarySearchTree:
       
 
 bst = BinarySearchTree()
-bst.insert(9)
-bst.insert(4) 
-bst.insert(6)
-bst.insert(20)
-bst.insert(170)
-bst.insert(15)
-bst.insert(1)
-bst.insert(150)
+bst.insert(bst.get()['root'],9)
+bst.insert(bst.get()['root'],4) 
+bst.insert(bst.get()['root'],6)
+bst.insert(bst.get()['root'],20)
+bst.insert(bst.get()['root'],170)
+bst.insert(bst.get()['root'],15)
+bst.insert(bst.get()['root'],1)
+bst.insert(bst.get()['root'],150)
 
 print(bst.remove(4))
 
