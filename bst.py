@@ -1,28 +1,27 @@
 class BinarySearchTree:
     def __init__(self):
         self.root = None
-    def insert(self, root, value):
         
-    # def insert(self,value):
-    #     node = {'value':value,'left':None,'right':None}
-    #     if self.root == None:
-    #         self.root = node 
-    #     else:
+    def insert(self,value):
+        node = {'value':value,'left':None,'right':None}
+        if self.root == None:
+            self.root = node 
+        else:
             
-    #         current = self.root
-    #         while True:
-    #             if value > current['value']:
-    #                 if current['right'] == None:
-    #                     current['right'] = node
-    #                     break
-    #                 else:
-    #                     current = current['right']
-    #             else:
-    #                 if current['left'] == None:
-    #                     current['left'] = node
-    #                     break
-    #                 else:
-    #                     current = current['left']
+            current = self.root
+            while True:
+                if value > current['value']:
+                    if current['right'] == None:
+                        current['right'] = node
+                        break
+                    else:
+                        current = current['right']
+                else:
+                    if current['left'] == None:
+                        current['left'] = node
+                        break
+                    else:
+                        current = current['left']
     def lookup(self,value):
         if self.root == None:
             return
