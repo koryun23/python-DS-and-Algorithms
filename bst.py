@@ -40,7 +40,24 @@ class BinarySearchTree:
                     return current
 
     def remove(self,root,value):
-
+        if not self.root:
+            return False
+        if value > root['value']:
+            root['right'] = self.remove(root['right'], value)
+        elif value < root['value']:
+            root['left'] = self.remove(root['left'], value)
+        else:
+            if root['left'] == None:
+                return root['right']
+            elif root['right'] == None:
+                return root['left']
+            else:
+                root = root['right']
+                leftmost = root['left']
+                while root['left'] != None:
+                    leftmost = root['left']
+                    root = root['left']
+                return leftmost
 
         # if not self.root:
         #     return False
@@ -104,16 +121,16 @@ class BinarySearchTree:
       
 
 bst = BinarySearchTree()
-bst.insert(bst.get()['root'],9)
-bst.insert(bst.get()['root'],4) 
-bst.insert(bst.get()['root'],6)
-bst.insert(bst.get()['root'],20)
-bst.insert(bst.get()['root'],170)
-bst.insert(bst.get()['root'],15)
-bst.insert(bst.get()['root'],1)
-bst.insert(bst.get()['root'],150)
+bst.insert(9)
+bst.insert(4) 
+bst.insert(6)
+bst.insert(20)
+bst.insert(170)
+bst.insert(15)
+bst.insert(1)
+bst.insert(150)
 
-print(bst.remove(bst.get()['root'],4))
+print(bst.remove(bst.get()['root'],20))
 
 print(bst.get())
 
