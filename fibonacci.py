@@ -9,16 +9,11 @@ print(fibonacci_recursively(3))
 print(fibonacci_recursively(11))
 
 def fibonacci_iteratively(n):
-    if n == 1 or n == 2:
-        return 1
-    a = 0
-    b = 1
-    c = 1
-    for i in range(1, n,1):
-        a = b
-        b = c
-        c = a+b
-    return b
+    arr = [0,1]
+    for i in range(2, n+1, 1):
+        arr.append(arr[i-2]+arr[i-1])
+    return arr[n]
+
 
 print(fibonacci_iteratively(8))
 print(fibonacci_iteratively(2))
