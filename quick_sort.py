@@ -1,4 +1,3 @@
-numbers = [6,5,3,1,8,7,2,4]
 def get_pivot(arr, low, high): 
     i = low-1
     pivot = arr[high]
@@ -8,13 +7,15 @@ def get_pivot(arr, low, high):
             arr[i],arr[j] = arr[j],arr[i]
     arr[i+1],arr[high] = arr[high], arr[i+1]
     return i+1
-def quick_sort(array, low, high):
+def quick_sort(arr, low, high):
     if low < high:
-        pi = get_pivot(array, low, high)
-        quick_sort(array, low, pi-1)
-        quick_sort(array, pi+1, high)
-    return array
-        
-print(get_pivot(numbers,0,len(numbers) - 1))
+        pi = get_pivot(arr, low, high)
+        quick_sort(arr, low, pi-1)
+        quick_sort(arr, pi+1, high)
+    return arr
+
+numbers = [6,5,3,1,8,7,2,4]    
+
+# print(get_pivot(numbers,0,len(numbers) - 1))
 print(quick_sort(numbers, 0, len(numbers) - 1))
 
