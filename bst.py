@@ -39,78 +39,59 @@ class BinarySearchTree:
                 else:
                     return current
 
-    def remove(self,root,value):
+    def remove(self,value):
         if not self.root:
             return False
-        if value > root['value']:
-            root['right'] = self.remove(root['right'], value)
-        elif value < root['value']:
-            root['left'] = self.remove(root['left'], value)
-        else:
-            if root['left'] == None:
-                return root['right']
-            elif root['right'] == None:
-                return root['left']
-            else:
-                root = root['right']
-                leftmost = root['left']
-                while root['left'] != None:
-                    leftmost = root['left']
-                    root = root['left']
-                return leftmost
+        parent = None
+        current = self.root
+        while current:
+            if value < current['value']:
+                parent = current
+                current = current['left']
+            elif value > current['value']:
+                parent = current
+                current = current['right']
+            elif value == current['value']:
 
-        # if not self.root:
-        #     return False
-        # parent = None
-        # current = self.root
-        # while current:
-        #     if value < current['value']:
-        #         parent = current
-        #         current = current['left']
-        #     elif value > current['value']:
-        #         parent = current
-        #         current = current['right']
-        #     elif value == current['value']:
+                # 1)no right child
+                if current['right'] == None:
+                    if parent == None:
+                        self.root = current['left']
+                    else:
+                        if current['value'] < parent['value']:
+                            parent['left'] = current['left']
+                        elif current['value'] > parent['value']:
+                            parent['right'] = current['left']
+                # 2) right child that doesnt have a left child
+                elif current['right']['left'] == None:
+                    current['right']['left'] = current['left']
+                    if parent == None:
+                        self.root= current['right']
+                    else:
+                        if parent['value'] > current['value']:
+                            parent['left'] = current['right']
+                        elif parent['value'] < current['value']:
+                            parent['right'] = current['right']
+                # 3)Right child that has a left child
+                else:
+                    #finding the right child's leftmost child
+                    leftmost = current['right']['left']
+                    leftmostParent = current['right']
+                    while leftmost['left'] != None:
+                        leftmostParent = leftmost
+                        leftmost = leftmost['left']
+                    leftmostParent['left'] = leftmost['right']
+                    leftmost['left'] = current['left']
+                    leftmost['right'] = current['right']
 
-        #         # 1)no right child
-        #         if current['right'] == None:
-        #             if parent == None:
-        #                 self.root = current['left']
-        #             else:
-        #                 if current['value'] < parent['value']:
-        #                     parent['left'] = current['left']
-        #                 elif current['value'] > parent['value']:
-        #                     parent['right'] = current['left']
-        #         # 2) right child that doesnt have a left child
-        #         elif current['right']['left'] == None:
-        #             current['right']['left'] = current['left']
-        #             if parent == None:
-        #                 self.root= current['right']
-        #             else:
-        #                 if parent['value'] > current['value']:
-        #                     parent['left'] = current['right']
-        #                 elif parent['value'] < current['value']:
-        #                     parent['right'] = current['right']
-        #         # 3)Right child that has a left child
-        #         else:
-        #             #finding the right child's leftmost child
-        #             leftmost = current['right']['left']
-        #             leftmostParent = current['right']
-        #             while leftmost['left'] != None:
-        #                 leftmostParent = leftmost
-        #                 leftmost = leftmost['left']
-        #             leftmostParent['left'] = leftmost['right']
-        #             leftmost['left'] = current['left']
-        #             leftmost['right'] = current['right']
-
-        #             if parent == None:
-        #                 self.root = leftmost
-        #             else:
-        #                 if current['value'] < parent['value']:
-        #                     parent['left'] = leftmost
-        #                 elif current['value'] > parent['value']:
-        #                     parent['right'] = leftmost
-        #         return True  
+                    if parent == None:
+                        self.root = leftmost
+                    else:
+                        if current['value'] < parent['value']:
+                            parent['left'] = leftmost
+                        elif current['value'] > parent['value']:
+                            parent['right'] = leftmost
+                return True  
 
     def get(self):
         my_bst = {
@@ -129,8 +110,14 @@ bst.insert(170)
 bst.insert(15)
 bst.insert(1)
 bst.insert(150)
-
-print(bst.remove(bst.get()['root'],20))
+bst.remove(20)
+bst.remove(9)
+bst.remove(1)
+bst.remove(170)
+bst.remove(4)
+bst.remove(6)
+bst.remove(15)
+bst.remove(150)
 
 print(bst.get())
 
