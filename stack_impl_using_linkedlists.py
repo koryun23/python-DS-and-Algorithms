@@ -134,9 +134,6 @@ class LinkedList:
 class Stack:
     def __init__(self):
         self.ll = LinkedList()
-        self.top = self.ll.head
-        self.bottom = self.ll.tail
-        self.length = self.ll.length
     def peek(self):
         return self.ll.head
     def push(self,value):
@@ -151,14 +148,8 @@ class Stack:
         }
         return stack
 
-myStack = Stack()
-myStack.push(10)
-print(myStack.peek())
-myStack.push(10)
-myStack.push(20)
-myStack.push(30)
-myStack.push(40)
-print(myStack.get())
+
+
         
 
 
