@@ -99,8 +99,51 @@ class BinarySearchTree:
         }
         return my_bst
         
-      
+    def breadthFirstSearch(self):
+        currentNode = self.root
+        arr = []
+        q = []
+        q.append(currentNode)
+        while len(q) > 0:
+            currentNode = q[0]
+            del q[0]
+            arr.append(currentNode['value'])
+            if currentNode['left']:
+                q.append(currentNode['left'])
+            if currentNode['right']:
+                q.append(currentNode['right'])
+            
 
+        return arr
+    def recursiveDFS(self, root):
+        print(root['value'])
+        currentNode = root
+        if currentNode['left']:
+            self.recursiveDFS(currentNode['left'])
+        if currentNode['right']:
+            self.recursiveDFS(currentNode['right'])
+        
+    def filling_q(self, root):
+        q = []
+        if root:
+            if root['left']:
+                q.append(root['left']['value'])
+            if root['right']:
+                q.append(root['right']['value'])
+            arr = q
+            return q
+    def recursiveBFS(self,root):
+        if root == self.root:
+            print(root['value'])
+        que = self.filling_q(root)
+        if que:
+            for i in range(len(que)):
+                print(que[i])
+            self.recursiveBFS(root['left'])
+            self.recursiveBFS(root['right'])
+
+
+        
 bst = BinarySearchTree()
 bst.insert(9)
 bst.insert(4) 
@@ -110,15 +153,21 @@ bst.insert(170)
 bst.insert(15)
 bst.insert(1)
 bst.insert(150)
-bst.remove(20)
-bst.remove(9)
-bst.remove(1)
-bst.remove(170)
-bst.remove(4)
-bst.remove(6)
-bst.remove(15)
-bst.remove(150)
+
+
+print('BFS:',bst.breadthFirstSearch())
+print('recursive DFS')
+bst.recursiveDFS(bst.root)
+print('recursive BFS')
+bst.recursiveBFS(bst.root)
+# bst.remove(20)
+# bst.remove(9)
+# bst.remove(1)
+# bst.remove(170)
+# bst.remove(4)
+# bst.remove(6)
+# bst.remove(15)
+# bst.remove(150)
 
 print(bst.get())
-
 

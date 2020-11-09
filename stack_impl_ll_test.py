@@ -5,12 +5,14 @@ from linkedlist import LinkedList
 
 class Test(unittest.TestCase):
     def test_push(self):
-        ll = LinkedList()
         stack = Stack()
-        self.assertTrue(ll.prepend(1) == stack.push(1))
+        stack.push(5)
+        self.assertTrue(stack.peek()['value'] ==5)
 
 
     def test_pop(self):
-        ll = LinkedList()
         stack = Stack()
-        self.assertTrue(ll.remove(0) == stack.pop())
+        stack.push(5)
+        stack.push(10)
+        stack.pop()
+        self.assertTrue(stack.peek()['value'] == 5)
