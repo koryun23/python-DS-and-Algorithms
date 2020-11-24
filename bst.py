@@ -98,7 +98,7 @@ class BinarySearchTree:
             'root':self.root,
         }
         return my_bst
-        
+    
     def breadthFirstSearch(self):
         currentNode = self.root
         arr = []
@@ -112,36 +112,52 @@ class BinarySearchTree:
                 q.append(currentNode['left'])
             if currentNode['right']:
                 q.append(currentNode['right'])
-            
-
         return arr
-    def recursiveDFS(self, root):
-        print(root['value'])
-        currentNode = root
-        if currentNode['left']:
-            self.recursiveDFS(currentNode['left'])
-        if currentNode['right']:
-            self.recursiveDFS(currentNode['right'])
+    def recursiveBFS(self,q,arr):
+        if not len(q):
+            return arr
+        curNode = q[0]
+        del q[0]
+        arr.append(curNode['value'])
+        if curNode['left']:
+            q.append(curNode['left'])
+        if curNode['right']:
+            q.append(curNode['right'])
+        return self.recursiveBFS(q,arr)
+    def DFS_inorder(self, root,arr):
+        if root['left']:
+            self.DFS_inorder(root['left'],arr)
+        arr.append(root['value'])
+        if root['right']:
+            self.DFS_inorder(root['right'],arr)
+        return arr
+    def DFS_preorder(self,root,arr):
+        arr.append(root['value'])
+        if root['left']:
+            self.DFS_preorder(root['left'],arr)
+        if root['right']:
+            self.DFS_preorder(root['right'],arr)
+        return arr
+    def DFS_postorder(self,root,arr):
         
-    def filling_q(self, root):
-        q = []
-        if root:
-            if root['left']:
-                q.append(root['left']['value'])
-            if root['right']:
-                q.append(root['right']['value'])
-            arr = q
-            return q
-    def recursiveBFS(self,root):
-        if root == self.root:
-            print(root['value'])
-        que = self.filling_q(root)
-        if que:
-            for i in range(len(que)):
-                print(que[i])
-            self.recursiveBFS(root['left'])
-            self.recursiveBFS(root['right'])
+        if root['left']:
+            self.DFS_postorder(root['left'],arr)
+        
+        if root['right']:
+            self.DFS_postorder(root['right'],arr)
+        arr.append(root['value'])
+        return arr
 
+        
+#           9
+#       4        20
+#     1   6   15    170
+
+
+        
+
+    
+    
 
         
 bst = BinarySearchTree()
@@ -152,22 +168,14 @@ bst.insert(20)
 bst.insert(170)
 bst.insert(15)
 bst.insert(1)
-bst.insert(150)
+
 
 
 print('BFS:',bst.breadthFirstSearch())
-print('recursive DFS')
-bst.recursiveDFS(bst.root)
-print('recursive BFS')
-bst.recursiveBFS(bst.root)
-# bst.remove(20)
-# bst.remove(9)
-# bst.remove(1)
-# bst.remove(170)
-# bst.remove(4)
-# bst.remove(6)
-# bst.remove(15)
-# bst.remove(150)
+print('recursive BFS:',bst.recursiveBFS([bst.root],[]))
+print('recursive DFS inorder:',bst.DFS_inorder(bst.root, []))
+print('recursive DFS preorder:',bst.DFS_preorder(bst.root, []))
+print('recursive DFS postorder:',bst.DFS_postorder(bst.root, []))
 
-print(bst.get())
+
 

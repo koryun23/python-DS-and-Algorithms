@@ -123,7 +123,7 @@ class LinkedList:
         while index>0:
             curNode = curNode['next']
             index -= 1
-        return curNode['value']
+        return curNode
     def remove_all(self):
         self.head = None
         self.head = None
@@ -139,7 +139,10 @@ class Stack:
     def push(self,value):
         self.ll.prepend(value)
     def pop(self):
+        first = self.ll.get_by_index(0)
         self.ll.remove(0)
+        return first
+
     def get(self):
         stack = {
             'top':self.ll.head,
@@ -147,6 +150,18 @@ class Stack:
             'length':self.ll.length
         }
         return stack
+
+
+
+
+myStack = Stack()
+myStack.push(10)
+myStack.push(20)
+myStack.push(30)
+myStack.push(40)
+myStack.push(50)
+print(myStack.pop())
+print(myStack.get())
 
 
 
