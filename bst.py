@@ -115,32 +115,33 @@ class BinarySearchTree:
             
 
         return arr
-    def recursiveDFS(self, root):
-        print(root['value'])
-        currentNode = root
-        if currentNode['left']:
-            self.recursiveDFS(currentNode['left'])
-        if currentNode['right']:
-            self.recursiveDFS(currentNode['right'])
+    def inorder_DFS(self,root,arr):
+        if root['left']:
+            self.inorder_DFS(root['left'],arr)
+        arr.append(root['value'])
+        if root['right']:
+            self.inorder_DFS(root['right'],arr)
         
-    def filling_q(self, root):
-        q = []
-        if root:
-            if root['left']:
-                q.append(root['left']['value'])
-            if root['right']:
-                q.append(root['right']['value'])
-            arr = q
-            return q
-    def recursiveBFS(self,root):
-        if root == self.root:
-            print(root['value'])
-        que = self.filling_q(root)
-        if que:
-            for i in range(len(que)):
-                print(que[i])
-            self.recursiveBFS(root['left'])
-            self.recursiveBFS(root['right'])
+        return arr
+    
+    def preorder_DFS(self,root,arr):
+        arr.append(root['value'])
+        if root['left']:
+            self.preorder_DFS(root['left'],arr)
+        
+        if root['right']:
+            self.preorder_DFS(root['right'],arr)
+        
+        return arr
+    def postorder_DFS(self,root,arr):
+        
+        if root['left']:
+            self.postorder_DFS(root['left'],arr)
+        
+        if root['right']:
+            self.postorder_DFS(root['right'],arr)
+        arr.append(root['value'])
+        return arr
 
 
         
@@ -152,22 +153,18 @@ bst.insert(20)
 bst.insert(170)
 bst.insert(15)
 bst.insert(1)
-bst.insert(150)
 
 
 print('BFS:',bst.breadthFirstSearch())
-print('recursive DFS')
-bst.recursiveDFS(bst.root)
-print('recursive BFS')
-bst.recursiveBFS(bst.root)
-# bst.remove(20)
-# bst.remove(9)
-# bst.remove(1)
-# bst.remove(170)
-# bst.remove(4)
-# bst.remove(6)
-# bst.remove(15)
-# bst.remove(150)
+print('DFS inorder')
+print(bst.inorder_DFS(bst.root,[]))
+print('DFS preorder')
+print(bst.preorder_DFS(bst.root,[]))
+print('DFS postorder')
+print(bst.postorder_DFS(bst.root,[]))
+# print('recursive BFS')
+# bst.recursiveBFS(bst.root)
 
-print(bst.get())
+
+
 
