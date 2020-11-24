@@ -115,6 +115,7 @@ class BinarySearchTree:
             
 
         return arr
+
     def inorder_DFS(self,root,arr):
         if root['left']:
             self.inorder_DFS(root['left'],arr)
@@ -143,7 +144,17 @@ class BinarySearchTree:
         arr.append(root['value'])
         return arr
 
-
+    def recursive_BFS(self,q,arr):
+        if not len(q):
+            return arr
+        cur = q[0]
+        del q[0]
+        arr.append(cur['value'])
+        if cur['left']:
+            q.append(cur['left'])
+        if cur['right']:
+            q.append(cur['right'])
+        return self.recursive_BFS(q,arr)
         
 bst = BinarySearchTree()
 bst.insert(9)
@@ -153,8 +164,6 @@ bst.insert(20)
 bst.insert(170)
 bst.insert(15)
 bst.insert(1)
-
-
 print('BFS:',bst.breadthFirstSearch())
 print('DFS inorder')
 print(bst.inorder_DFS(bst.root,[]))
@@ -162,8 +171,8 @@ print('DFS preorder')
 print(bst.preorder_DFS(bst.root,[]))
 print('DFS postorder')
 print(bst.postorder_DFS(bst.root,[]))
-# print('recursive BFS')
-# bst.recursiveBFS(bst.root)
+print('recursive BFS')
+print(bst.recursive_BFS([bst.root],[]))
 
 
 
