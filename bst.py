@@ -147,15 +147,21 @@ class BinarySearchTree:
     def recursive_BFS(self,q,arr):
         if not len(q):
             return arr
-        cur = q[0]
+        current = q[0]
         del q[0]
-        arr.append(cur['value'])
-        if cur['left']:
-            q.append(cur['left'])
-        if cur['right']:
-            q.append(cur['right'])
+        arr.append(current['value'])
+        if current['left']:
+            q.append(current['left'])
+        if current['right']:
+
+            q.append(current['right'])
         return self.recursive_BFS(q,arr)
-        
+
+
+
+
+
+
 bst = BinarySearchTree()
 bst.insert(9)
 bst.insert(4) 
