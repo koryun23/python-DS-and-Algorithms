@@ -7,5 +7,5 @@ def max_profit(start,end,arr,max_p):
     return max(min_leftmost,min_rightmost)
 
 
-numbers = [20,40,30,60,20]
+numbers = [20,40,30,60,20,10]
 print(max_profit(0,len(numbers)-1,numbers,0))

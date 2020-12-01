@@ -1,7 +1,7 @@
 def binary_search(arr,num): #[3,7,9,13,20,24,29], num = 24
     left = 0
     right = len(arr) - 1
-    for i in range(len(arr)):
+    while left <= right:
         mid = left + (right-left)//2
         if arr[mid] < num:
             left = mid+1
@@ -10,4 +10,4 @@ def binary_search(arr,num): #[3,7,9,13,20,24,29], num = 24
         else:
             return mid
     
-print(binary_search([3,7,9,13,20,24,29],6))
+print(binary_search([3,7,9,13,20,24,29],29))
