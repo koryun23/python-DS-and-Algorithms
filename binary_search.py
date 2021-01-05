@@ -10,4 +10,4 @@ def binary_search(arr,num): #[3,7,9,13,20,24,29], num = 24
         else:
             return mid
     
-print(binary_search([3,7,9,13,20,24,29],29))
+print(binary_search([3,7,9,13,20,24,29],20))
