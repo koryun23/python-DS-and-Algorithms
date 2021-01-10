@@ -93,8 +93,11 @@ class Chess:
     def queen(self,letter,number):
         return self.rook(letter,number)+self.bishop(letter,number)
 
+
+
+
 chess = Chess()
-print('pawn: ',chess.pawn('a',2))
+print('pawn: ',chess.pawn('a',3))
 print('rook: ',chess.rook('a',1))
 print('king: ',chess.king('a',1))
 print('bishop: ',chess.bishop('d',4))
