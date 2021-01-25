@@ -159,17 +159,16 @@ class BinarySearchTree:
     def iterative_DFS(self):
         stack = []
         arr = []
-        stack.append(self.root)
-        while len(stack) > 0:
-            print(arr)
-            if stack[-1]['left']:
-                stack.append(stack[-1]['left'])
-            
-            elif stack[-1]['right']:
-                stack.append(stack[-1]['right'])
+        node = self.root
+        while stack or node:
+            if node:
+                stack.append(node)
+                node = node['left']
             else:
-                del stack[-1]
-            arr.append(stack[-1]['value'])
+                node = stack.pop()
+                arr.append(node['value'])
+                node = node['right']
+
         return arr
 
 
@@ -195,9 +194,5 @@ print('DFS postorder')
 print(bst.postorder_DFS(bst.root,[]))
 print('recursive BFS')
 print(bst.recursive_BFS([bst.root],[]))
-print('iterative DFS')
-# print(bst.iterative_DFS())
-
-
-
-
+print('iterative DFS inorder')
+print(bst.iterative_DFS())
